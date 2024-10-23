@@ -160,37 +160,7 @@ def test_link_text_olvido_tenant_ok(login_plataforma_page):
         assert (resultado.is_displayed()), "El link no esta visible"
         assert (href_esperado in resultado_link_href), f"El href {resultado_link_href}  no es el esperado"
 
-@allure.suite("Casos de prueba de la pagina reports de Plataforma")
-@allure.epic("reports")
-@allure.feature("Página de reports en Plataforma")
-@allure.story("US: reports")
-@allure.testcase("TC - 0007")
-@allure.title("reports correcto")
-@allure.description("Este test verifica que se hace el login con los datos correctos y abre la pagina de Dashboard.")
-@allure.severity(allure.severity_level.NORMAL)
-@pytest.mark.login
-@pytest.mark.ui
-def test_login_plataforma_datos_correctos(login_plataforma_page):
-    # declaracion
-    tenan = "Agenda22022022"
-    usuario = "Andreina"
-    clave = "123qwe"
-    with allure.step("Navegar en la pagina de inicio de plataforma"):
-        login_plataforma_page.navegar_login_plataforma()
 
-    with allure.step("Setear los datos correctos en los campos Tenant, Usuario, Contraseña"):
-        login_plataforma_page.set_user_inputs(tenan, usuario, clave)
-        login_plataforma_page.iniciar_sesion_button()
-
-    with allure.step("Ingresamos en la pagina Dashboard y se muestran los datos del Tenant y usuario"):
-        tenanEsperado = "Agenda22022022"
-        usuarioEsperado = "Andreina"
-        assert tenanEsperado in login_plataforma_page.get_tenant_login_ok().text
-        assert usuarioEsperado in login_plataforma_page.get_usuario_login_ok().text
-
-    with allure.step("Log out de la página Dashboard"):
-        login_plataforma_page.usuario_clic()
-        login_plataforma_page.log_out()
 
 @allure.suite("Casos de prueba de la pagina reports de Plataforma")
 @allure.epic("reports")
@@ -258,5 +228,35 @@ def test_login_plataforma_error_tenant(login_plataforma_page):
     with allure.step("Muestra el pop up con el mensaje de error"):
         login_plataforma_page.get_error_login_button_clic()
 
+@allure.suite("Casos de prueba de la pagina reports de Plataforma")
+@allure.epic("reports")
+@allure.feature("Página de reports en Plataforma")
+@allure.story("US: reports")
+@allure.testcase("TC - 0007")
+@allure.title("reports correcto")
+@allure.description("Este test verifica que se hace el login con los datos correctos y abre la pagina de Dashboard.")
+@allure.severity(allure.severity_level.NORMAL)
+@pytest.mark.login
+@pytest.mark.ui
+def test_login_plataforma_datos_correctos(login_plataforma_page):
+    # declaracion
+    tenan = "Agenda22022022"
+    usuario = "Andreina"
+    clave = "123qwe"
+    with allure.step("Navegar en la pagina de inicio de plataforma"):
+        login_plataforma_page.navegar_login_plataforma()
 
+    with allure.step("Setear los datos correctos en los campos Tenant, Usuario, Contraseña"):
+        login_plataforma_page.set_user_inputs(tenan, usuario, clave)
+        login_plataforma_page.iniciar_sesion_button()
+
+    with allure.step("Ingresamos en la pagina Dashboard y se muestran los datos del Tenant y usuario"):
+        tenanEsperado = "Agenda22022022"
+        usuarioEsperado = "Andreina"
+        assert tenanEsperado in login_plataforma_page.get_tenant_login_ok().text
+        assert usuarioEsperado in login_plataforma_page.get_usuario_login_ok().text
+
+    with allure.step("Log out de la página Dashboard"):
+        login_plataforma_page.usuario_clic()
+        login_plataforma_page.log_out()
 
