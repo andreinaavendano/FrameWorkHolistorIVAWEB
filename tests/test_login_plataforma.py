@@ -8,10 +8,10 @@ def login_plataforma_page(browser, base_url):
     return LoginPlataformaPage(browser, base_url)
 
 
-@allure.suite("Casos de prueba de la pagina reports de Plataforma")
-@allure.epic("reports")
-@allure.feature("Página de reports en Plataforma")
-@allure.story("US: reports")
+@allure.suite("Casos de prueba de la pagina Login de Plataforma")
+@allure.epic("Login")
+@allure.feature("Página de Login en Plataforma")
+@allure.story("US: Login")
 @allure.testcase("TC - 0001")
 @allure.title("Campo tenant ok")
 @allure.description("Este test verifica que se encuentra el input text Tenant")
@@ -31,10 +31,10 @@ def test_campo_tenant_ok(login_plataforma_page):
                 ), "El texto esperado no coincide con el texto encontrado"
 
 
-@allure.suite("Casos de prueba de la pagina reports de Plataforma")
-@allure.epic("reports")
-@allure.feature("Página de reports en Plataforma")
-@allure.story("US: reports")
+@allure.suite("Casos de prueba de la pagina Login de Plataforma")
+@allure.epic("Login")
+@allure.feature("Página de Login en Plataforma")
+@allure.story("US: Login")
 @allure.testcase("TC - 0002")
 @allure.title("Campo usuario ok")
 @allure.description("Este test verifica que se encuentra el input text Usuario")
@@ -54,10 +54,10 @@ def test_campo_nombre_usurio_ok(login_plataforma_page):
                 ), "El texto esperado no coincide con el texto encontrado"
 
 
-@allure.suite("Casos de prueba de la pagina reports de Plataforma")
-@allure.epic("reports")
-@allure.feature("Página de reports en Plataforma")
-@allure.story("US: reports")
+@allure.suite("Casos de prueba de la pagina Login de Plataforma")
+@allure.epic("Login")
+@allure.feature("Página de Login en Plataforma")
+@allure.story("US: Login")
 @allure.testcase("TC - 0003")
 @allure.title("Campo password ok")
 @allure.description("Este test verifica que se encuentra el input text Usuario")
@@ -77,17 +77,17 @@ def test_campo_nombre_password_ok(login_plataforma_page):
                 ), "El texto esperado no coincide con el texto encontrado"
 
 
-@allure.suite("Casos de prueba de la pagina reports de Plataforma")
-@allure.epic("reports")
-@allure.feature("Página de reports en Plataforma")
-@allure.story("US: reports")
+@allure.suite("Casos de prueba de la pagina Login de Plataforma")
+@allure.epic("Login")
+@allure.feature("Página de Login en Plataforma")
+@allure.story("US: Login")
 @allure.testcase("TC - 0004")
 @allure.title("Check box recuerdame existe")
 @allure.description("Este test verifica que se encuentra el Check Box Recuérdame")
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.login
 @pytest.mark.ui
-def test_checkRecuerdame_ok(login_plataforma_page):
+def test_check_recuerdame_ok(login_plataforma_page):
     with allure.step("Navegar en la pagina de inicio de plataforma"):
         login_plataforma_page.navegar_login_plataforma()
 
@@ -104,10 +104,10 @@ def test_checkRecuerdame_ok(login_plataforma_page):
                 ), "El texto esperado no coincide con el texto encontrado "
 
 
-@allure.suite("Casos de prueba de la pagina reports de Plataforma")
-@allure.epic("reports")
-@allure.feature("Página de reports en Plataforma")
-@allure.story("US: reports")
+@allure.suite("Casos de prueba de la pagina Login de Plataforma")
+@allure.epic("Login")
+@allure.feature("Página de Login en Plataforma")
+@allure.story("US: Login")
 @allure.testcase("TC - 0005")
 @allure.title("Link Text Ref olvidó la contraseña existe")
 @allure.description("Este test verifica que se encuentra el link con el texto correcto y se encuentre habilitado")
@@ -132,10 +132,10 @@ def test_link_text_olvido_contrasena_ok(login_plataforma_page):
         assert (href_esperado in resultado_link_href), f"El href {resultado_link_href}  no es el esperado"
 
 
-@allure.suite("Casos de prueba de la pagina reports de Plataforma")
-@allure.epic("reports")
-@allure.feature("Página de reports en Plataforma")
-@allure.story("US: reports")
+@allure.suite("Casos de prueba de la pagina Login de Plataforma")
+@allure.epic("Login")
+@allure.feature("Página de Login en Plataforma")
+@allure.story("US: Login")
 @allure.testcase("TC - 0006")
 @allure.title("Link Text Ref olvidó Espcio de trabajo existe")
 @allure.description("Este test verifica que se encuentra el link con el texto correcto")
@@ -162,10 +162,10 @@ def test_link_text_olvido_tenant_ok(login_plataforma_page):
 
 
 
-@allure.suite("Casos de prueba de la pagina reports de Plataforma")
-@allure.epic("reports")
-@allure.feature("Página de reports en Plataforma")
-@allure.story("US: reports")
+@allure.suite("Casos de prueba de la pagina Login de Plataforma")
+@allure.epic("Login")
+@allure.feature("Página de Login en Plataforma")
+@allure.story("US: Login")
 @allure.testcase("TC - 0008")
 @allure.title("Log incorrecto usurio o clave no son validas")
 @allure.description("Este test verifica que no se puede loguear con datos usuario clave no validos")
@@ -198,10 +198,10 @@ def test_login_plataforma_error_usuario_clave(login_plataforma_page):
         login_plataforma_page.get_error_login_button_clic()
 
 
-@allure.suite("Casos de prueba de la pagina reports de Plataforma")
-@allure.epic("reports")
-@allure.feature("Página de reports en Plataforma")
-@allure.story("US: reports")
+@allure.suite("Casos de prueba de la pagina Login de Plataforma")
+@allure.epic("Login")
+@allure.feature("Página de Login en Plataforma")
+@allure.story("US: Login")
 @allure.testcase("TC - 0009")
 @allure.title("Log incorrecto Tenant no existe")
 @allure.description("Este test verifica que no se puede loguear en un tenant que no existe")
@@ -228,12 +228,12 @@ def test_login_plataforma_error_tenant(login_plataforma_page):
     with allure.step("Muestra el pop up con el mensaje de error"):
         login_plataforma_page.get_error_login_button_clic()
 
-@allure.suite("Casos de prueba de la pagina reports de Plataforma")
-@allure.epic("reports")
-@allure.feature("Página de reports en Plataforma")
-@allure.story("US: reports")
+@allure.suite("Casos de prueba de la pagina Login de Plataforma")
+@allure.epic("Login")
+@allure.feature("Página de Login en Plataforma")
+@allure.story("US: Login")
 @allure.testcase("TC - 0007")
-@allure.title("reports correcto")
+@allure.title("Login correcto")
 @allure.description("Este test verifica que se hace el login con los datos correctos y abre la pagina de Dashboard.")
 @allure.severity(allure.severity_level.NORMAL)
 @pytest.mark.login
