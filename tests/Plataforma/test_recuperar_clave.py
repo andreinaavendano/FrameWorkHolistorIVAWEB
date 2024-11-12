@@ -1,12 +1,11 @@
 import pytest
 import allure
-from pages.recuperar_clave import RecuperarClave
-from selenium.webdriver.support import expected_conditions as EC
+from pages.Plataforma.recuperar_clave import RecuperarClave
 
 
 @pytest.fixture
-def recuperar_clave(browser, base_url):
-    return RecuperarClave(browser, base_url)
+def recuperar_clave(browser, base_url, datos_usuario):
+    return RecuperarClave(browser, base_url, datos_usuario)
 
 
 @allure.suite("Casos de prueba de la pagina Login de Plataforma")

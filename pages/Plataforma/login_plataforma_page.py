@@ -98,4 +98,7 @@ class LoginPlataformaPage(BasePage):
     def log_out(self):
         self.click(self.SALIR_BUTTON)
 
-
+    def login(self):
+        self.navegar_login_plataforma()
+        self.set_user_inputs(self.datos_usuario["tenan"], self.datos_usuario["usuario"], self.datos_usuario["clave"])
+        self.iniciar_sesion_button()

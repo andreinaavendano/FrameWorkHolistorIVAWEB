@@ -19,8 +19,13 @@ def pytest_addoption(parser):
     parser.addoption(
         "--env",
         action="store",
-        default="dev",
+        default="qa",
         help="Entorno: dev, staging, prod")
+
+    parser.addoption("--app",
+    action = "store",
+    default = "PDE",
+    help = "Aplicacion: SYJ, PDE, CTB, IVA")
 
 @pytest.fixture
 def base_url(request):
@@ -36,6 +41,25 @@ def base_url(request):
         return "https://plataforma-saas.azurewebsites.net"
     else:
         raise ValueError(f"Entorno no soportado: {environment}")
+
+@pytest.fixture(scope="session")
+def datos_usuario(request):
+
+    app = request.config.getoption("--app")
+    environment = request.config.getoption("--env")
+    # Validar el entorno y la aplicación para retornar datos de usuario específicos
+    if environment == "qa":
+        if app == 'SYJ':
+            return {"usuario": "Andreina", "clave": "123qwe", "tenan": "SYJ_PM"}
+        if app == 'PDE':
+            return {"usuario": "Andreina", "clave": "123qwe", "tenan": "Agenda22022022"}
+
+    if environment == "UAT":
+        if app == 'SYJ':
+            return {"usuario": "Andreina", "clave": "123qwe", "tenan": "SYJ_Especialistas"}
+        if app == 'PDE':
+            return {"usuario": "Andreina", "clave": "123qwe", "tenan": "Agenda22022022"}
+
 
 @pytest.fixture(scope="session")
 def browser(request):
@@ -54,7 +78,6 @@ def browser(request):
         driver = webdriver.Safari()
     else:
         raise ValueError(f"Browser {browser_type} no soportado")
-
     yield driver
     driver.quit()
 

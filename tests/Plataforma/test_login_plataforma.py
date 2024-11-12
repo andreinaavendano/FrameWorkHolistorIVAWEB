@@ -1,11 +1,11 @@
 import pytest
 import allure
-from pages.login_plataforma_page import LoginPlataformaPage
+from pages.Plataforma.login_plataforma_page import LoginPlataformaPage
 
 
 @pytest.fixture
-def login_plataforma_page(browser, base_url):
-    return LoginPlataformaPage(browser, base_url)
+def login_plataforma_page(browser, base_url, datos_usuario):
+    return LoginPlataformaPage(browser, base_url, datos_usuario)
 
 
 @allure.suite("Casos de prueba de la pagina Login de Plataforma")
@@ -17,7 +17,7 @@ def login_plataforma_page(browser, base_url):
 @allure.description("Este test verifica que se encuentra el input text Tenant")
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.login
-@pytest.mark.ui
+@pytest.mark.regresion
 def test_campo_tenant_ok(login_plataforma_page):
     with allure.step("Al navegar en la pagina de inicio de plataforma"):
         login_plataforma_page.navegar_login_plataforma()
@@ -40,7 +40,7 @@ def test_campo_tenant_ok(login_plataforma_page):
 @allure.description("Este test verifica que se encuentra el input text Usuario")
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.login
-@pytest.mark.ui
+@pytest.mark.regresion
 def test_campo_nombre_usurio_ok(login_plataforma_page):
     with allure.step("Al navegar en la pagina de inicio de plataforma"):
         login_plataforma_page.navegar_login_plataforma()
@@ -63,7 +63,7 @@ def test_campo_nombre_usurio_ok(login_plataforma_page):
 @allure.description("Este test verifica que se encuentra el input text Usuario")
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.login
-@pytest.mark.ui
+@pytest.mark.regresion
 def test_campo_nombre_password_ok(login_plataforma_page):
     with allure.step("Al navegar en la pagina de inicio de plataforma"):
         login_plataforma_page.navegar_login_plataforma()
@@ -86,7 +86,7 @@ def test_campo_nombre_password_ok(login_plataforma_page):
 @allure.description("Este test verifica que se encuentra el Check Box Recuérdame")
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.login
-@pytest.mark.ui
+@pytest.mark.regresion
 def test_check_recuerdame_ok(login_plataforma_page):
     with allure.step("Navegar en la pagina de inicio de plataforma"):
         login_plataforma_page.navegar_login_plataforma()
@@ -113,7 +113,7 @@ def test_check_recuerdame_ok(login_plataforma_page):
 @allure.description("Este test verifica que se encuentra el link con el texto correcto y se encuentre habilitado")
 @allure.severity(allure.severity_level.NORMAL)
 @pytest.mark.login
-@pytest.mark.ui
+@pytest.mark.regresion
 def test_link_text_olvido_contrasena_ok(login_plataforma_page):
     with allure.step("Navegar en la pagina de inicio de plataforma"):
         login_plataforma_page.navegar_login_plataforma()
@@ -237,7 +237,8 @@ def test_login_plataforma_error_tenant(login_plataforma_page):
 @allure.description("Este test verifica que se hace el login con los datos correctos y abre la pagina de Dashboard.")
 @allure.severity(allure.severity_level.NORMAL)
 @pytest.mark.login
-@pytest.mark.ui
+@pytest.mark.regresion
+
 def test_login_plataforma_datos_correctos(login_plataforma_page):
     # declaracion
     tenan = "Agenda22022022"

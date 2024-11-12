@@ -1,18 +1,22 @@
+import time
+
 from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver import ActionChains
 
 
 class BasePage:
-    def __init__(self, driver, base_url):
+    def __init__(self, driver, base_url, datos_usuario):
         self.driver = driver
         self.base_url = base_url
+        print(f"Datos de usuario: {datos_usuario} ")
+        self.datos_usuario = datos_usuario
 
     def navigate_to(self, url):
         self.driver.get(url)
 
-    def wait_for_element(self, locator, timeout=10):
-
+    def wait_for_element(self, locator, timeout=8):
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_element_located(locator)
         )
@@ -54,4 +58,52 @@ class BasePage:
     def reload_page(self):
         self.driver.refresh()
 
+    def is_disabled(self, locator, timeout=20):
+        try:
+            element = self.wait_for_element(locator)
+            return 'disabled' in element.get_attribute('class').split()
+        except TimeoutException:
+            return False
 
+    def get_name_handle(self, driver):
+        return self.driver.current_window_handle
+
+    def swtich_page(self, ventana_original, driver):
+
+        time.sleep(10)
+        ventanas = self.driver.window_handles
+        for ventana in ventanas:
+            if ventana != ventana_original:
+                return self.driver.switch_to.window(ventana)
+
+    def title_page(self):
+        return self.driver.title
+
+    # Método para obtener la URL actual
+    def get_current_url(self):
+        return self.driver.current_url
+
+    def close(self):
+        ventana_original = self.get_name_handle(self.driver)
+        self.driver.close()
+        self.swtich_page(ventana_original, self.driver)
+
+    def move_to_element(self, element, timeout=10):
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element).click().pause(timeout).perform()
+    def hover_element_clic(self, locator):
+        element = self.wait_for_element(locator)
+        self.move_to_element(element)
+        #actions = ActionChains(self.driver)
+        #actions.move_to_element(element).click().pause(10).perform()
+
+    def wait_for_presente(self, locator, timeout=5):
+        return WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located(locator))
+
+    def hover_element_clic_presente(self, locator):
+        element = self.wait_for_presente(locator)
+        self.move_to_element(element)
+
+        #actions = ActionChains(self.driver)
+        #actions.move_to_element(element).click().pause(10).perform()

@@ -1,12 +1,11 @@
 import pytest
 import allure
-from pages.recuperar_tenant import RecuperarTenant
-from selenium.webdriver.support import expected_conditions as EC
+from pages.Plataforma.recuperar_tenant import RecuperarTenant
 
 
 @pytest.fixture
-def recuperar_tenant(browser, base_url):
-    return RecuperarTenant(browser, base_url)
+def recuperar_tenant(browser, base_url, datos_usuario):
+    return RecuperarTenant(browser, base_url, datos_usuario)
 
 @allure.suite("Casos de prueba de la pagina Login de Plataforma")
 @allure.epic("Login")
