@@ -7,7 +7,7 @@ from selenium.webdriver import ActionChains
 
 
 class BasePage:
-    def __init__(self, driver, base_url, datos_usuario):
+    def __init__(self, driver: object, base_url: object, datos_usuario: object) -> object:
         self.driver = driver
         self.base_url = base_url
         print(f"Datos de usuario: {datos_usuario} ")
@@ -16,7 +16,7 @@ class BasePage:
     def navigate_to(self, url):
         self.driver.get(url)
 
-    def wait_for_element(self, locator, timeout=8):
+    def wait_for_element(self, locator, timeout=12):
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_element_located(locator)
         )
@@ -58,7 +58,7 @@ class BasePage:
     def reload_page(self):
         self.driver.refresh()
 
-    def is_disabled(self, locator, timeout=20):
+    def is_disabled(self, locator):
         try:
             element = self.wait_for_element(locator)
             return 'disabled' in element.get_attribute('class').split()
@@ -70,7 +70,7 @@ class BasePage:
 
     def swtich_page(self, ventana_original, driver):
 
-        time.sleep(10)
+        time.sleep(20)
         ventanas = self.driver.window_handles
         for ventana in ventanas:
             if ventana != ventana_original:
@@ -88,7 +88,7 @@ class BasePage:
         self.driver.close()
         self.swtich_page(ventana_original, self.driver)
 
-    def move_to_element(self, element, timeout=10):
+    def move_to_element(self, element, timeout=5):
         actions = ActionChains(self.driver)
         actions.move_to_element(element).click().pause(timeout).perform()
     def hover_element_clic(self, locator):
@@ -97,7 +97,7 @@ class BasePage:
         #actions = ActionChains(self.driver)
         #actions.move_to_element(element).click().pause(10).perform()
 
-    def wait_for_presente(self, locator, timeout=5):
+    def wait_for_presente(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(
             EC.presence_of_element_located(locator))
 
