@@ -25,6 +25,7 @@ class HomePageHolistorPDE(BasePage):
     def navegar_pde(self):
         self.navegar_plataforma()
         self.open_pde()
+
     def get_current_url(self):
         return self.driver.current_url
 

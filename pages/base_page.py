@@ -1,13 +1,14 @@
 import time
 
 from selenium.webdriver.support.ui import WebDriverWait, Select
+from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver import ActionChains
 
 
 class BasePage:
-    def __init__(self, driver: object, base_url: object, datos_usuario: object) -> object:
+    def __init__(self, driver, base_url, datos_usuario):
         self.driver = driver
         self.base_url = base_url
         print(f"Datos de usuario: {datos_usuario} ")
@@ -16,10 +17,13 @@ class BasePage:
     def navigate_to(self, url):
         self.driver.get(url)
 
-    def wait_for_element(self, locator, timeout=12):
+    def wait_for_element(self, locator, timeout=15):
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_element_located(locator)
         )
+
+    def buscar_element(self, locator):
+        return self.driver.find_element(locator)
 
     def click(self, locator):
         self.wait_for_element(locator).click()

@@ -68,6 +68,7 @@ def browser(request):
     if browser_type == "chrome":
         service = ChromeService(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service)
+
     elif browser_type == "firefox":
         service = FirefoxService(GeckoDriverManager().install())
         driver = webdriver.Firefox(service=service)
